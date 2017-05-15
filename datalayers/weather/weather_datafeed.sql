@@ -22,8 +22,8 @@ CREATE TABLE raws
   CONSTRAINT raws_unique_station_id UNIQUE (station_id)
 );
 
--- view for geoserver raws layer 
+-- view for geoserver raws layer
 CREATE OR REPLACE VIEW raws_view AS
    SELECT
-     id, station_id, station_name, description, observation_recorded_at, the_geom 
+     id, station_id, station_name, status, description, air_temperature, wind_speed, wind_gust, wind_direction, observation_recorded_at, the_geom 
    FROM raws;
