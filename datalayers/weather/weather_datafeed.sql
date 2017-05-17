@@ -36,3 +36,7 @@ CREATE OR REPLACE VIEW public.raws_view AS
     raws.observation_recorded_at,
     raws.the_geom
    FROM raws where upper(raws.status) = 'ACTIVE';
+
+-- index on status
+CREATE INDEX raws_status_index ON raws ((upper(status)));
+
