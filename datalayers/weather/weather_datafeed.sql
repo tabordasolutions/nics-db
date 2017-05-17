@@ -23,7 +23,16 @@ CREATE TABLE raws
 );
 
 -- view for geoserver raws layer
-CREATE OR REPLACE VIEW raws_view AS
-   SELECT
-     id, station_id, station_name, status, description, air_temperature, wind_speed, wind_gust, wind_direction, observation_recorded_at, the_geom 
-   FROM raws;
+CREATE OR REPLACE VIEW public.raws_view AS 
+ SELECT raws.id,
+    raws.station_id,
+    raws.station_name,
+    raws.status,
+    raws.description,
+    round(raws.air_temperature) as air_temperature,
+    raws.wind_speed,
+    raws.wind_gust,
+    raws.wind_direction,
+    raws.observation_recorded_at,
+    raws.the_geom
+   FROM raws where upper(raws.status) = 'ACTIVE';
