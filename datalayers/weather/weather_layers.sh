@@ -57,7 +57,7 @@ psql -c "insert into folder values('FB9ABF2F-98C0-41C3-8C16-8324E1E701B9','Warni
 psql -c "insert into folder values('BFCC7A88-6625-4731-9713-A87102DC0EA5','Surface Forecasts', (select folderid from folder where foldername='Weather' and workspaceid=$2), 3, $2)" $1
 
 
-psql -c "COPY datasource FROM '${PWD}/weather_datasource.sql'" $1
-psql -c "COPY datalayersource FROM '${PWD}/weather_datalayersource.sql'" $1
-psql -c "COPY datalayer FROM '${PWD}/weather_datalayer.sql'" $1
-psql -c "COPY datalayerfolder FROM '${PWD}/weather_datalayerfolder.sql'" $1
+psql -c "COPY datasource FROM STDIN" $1 < ${PWD}/weather_datasource.sql
+psql -c "COPY datalayersource FROM STDIN" $1 < ${PWD}/weather_datalayersource.sql
+psql -c "COPY datalayer FROM STDIN" $1 < ${PWD}/weather_datalayer.sql
+psql -c "COPY datalayerfolder FROM STDIN" $1 < ${PWD}/weather_datalayerfolder.sql
