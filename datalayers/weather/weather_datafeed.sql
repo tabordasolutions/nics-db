@@ -1,26 +1,30 @@
 
 -- table to hold raws weather data
-CREATE TABLE raws
+create table raws
 (
-  id serial,
-  station_id character varying NOT NULL,
-  station_name character varying NOT NULL,
-  status character varying NOT NULL,
-  state character varying NOT NULL,
-  air_temperature double precision,
-  wind_speed double precision,
-  wind_direction double precision,
-  wind_gust double precision,
-  dew_point_temperature double precision,
-  relative_humidity double precision,
-  more_observations character varying,
-  description character varying,
-  observation_recorded_at timestamp with time zone NOT NULL,
-  created_at timestamp with time zone NOT NULL,
-  the_geom geometry(Point,3857) NOT NULL,
-  CONSTRAINT raws_pkey PRIMARY KEY (id),
-  CONSTRAINT raws_unique_station_id UNIQUE (station_id)
-);
+	id serial not null
+		constraint raws_pkey
+			primary key,
+	station_id varchar not null
+		constraint raws_unique_station_id
+			unique,
+	station_name varchar not null,
+	status varchar not null,
+	state varchar not null,
+	air_temperature double precision,
+	wind_speed double precision,
+	wind_direction double precision,
+	wind_gust double precision,
+	dew_point_temperature double precision,
+	relative_humidity double precision,
+	more_observations varchar,
+	description varchar,
+	observation_recorded_at timestamp with time zone not null,
+	created_at timestamp with time zone not null,
+	the_geom geometry(Point,3857) not null,
+	qc_status varchar(20)
+)
+;
 
 -- view for geoserver raws layer
 CREATE OR REPLACE VIEW public.raws_view AS 
