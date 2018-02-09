@@ -38,7 +38,8 @@ CREATE OR REPLACE VIEW public.raws_view AS
     raws.wind_gust,
     raws.wind_direction,
     raws.observation_recorded_at,
-    raws.the_geom
+    raws.the_geom,
+    raws.qc_status
    FROM raws where upper(raws.status) = 'ACTIVE';
 
 -- index on status
